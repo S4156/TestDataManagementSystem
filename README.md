@@ -1,7 +1,7 @@
 # Test Data Management System
 
 製造業の現場を想定した検査データ管理ソフトです。
-SQLiteを利用し、テスト結果を保存・検索・グラフ表示できるようにしました。
+SQLiteを利用し、検査結果を保存・検索・グラフ表示できるようにしました。
 
 ## ■ 使用技術
 - 言語: VB.NET (.NET 8)
@@ -21,6 +21,10 @@ SQLiteを利用し、テスト結果を保存・検索・グラフ表示でき�
 <img width="800" height="683" alt="Image" src="https://github.com/user-attachments/assets/d90d1afa-2de5-4fe9-a20f-9ff40432c062" />
 
 ## ■ 工夫した点
-- Repositoryパターンを採用し、UIとDBアクセスを分離
+- UIとDBアクセスのコードを分離し、拡張性を高めた
 - SQLiteを利用し、軽量かつ簡単に扱えるデータベースを構築
 - ScottPlotでグラフを描画し、数値の推移を直感的に把握できるようにした
+
+## ■ 今後の展望
+- 検査結果をCSVファイルに出力する機能の追加
+- 製品番号ごとの合格率表示機能の追加
