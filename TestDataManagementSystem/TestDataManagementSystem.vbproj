@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="My Project\Application.Designer.vb">
+    <Compile Update="src\My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
@@ -29,10 +29,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="My Project\Application.myapp">
+    <None Update="src\My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="src\My Project\新しいフォルダー1\" />
+    <Folder Include="src\My Project\新しいフォルダー\" />
   </ItemGroup>
 
 </Project>
