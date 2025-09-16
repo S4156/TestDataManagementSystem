@@ -1,7 +1,7 @@
-﻿Imports System.Data.SQLite
-
+﻿Imports System.Configuration
+Imports System.Data.SQLite
 Public Class Repository
-    Private connectionString As String = "Data Source = " & IO.Path.Combine(Application.StartupPath, "TestResults.db") & ";Version=3;"
+    Private connectionString As String = ConfigurationManager.ConnectionStrings("MyDb").ConnectionString
     Private dt As New DataTable()
 
     Public Sub AddTestResult(productId As String, lotNo As String, testDate As DateTime, tester As String, value As Double, result As String)
@@ -85,7 +85,7 @@ Public Class Repository
                 End Using
             End Using
         Catch ex As Exception
-        MessageBox.Show("データ更新中にエラーが発生しました", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("データ更新中にエラーが発生しました", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Return
         End Try
         MessageBox.Show("データを更新しました。", "完了", MessageBoxButtons.OK, MessageBoxIcon.Information)
