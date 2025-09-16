@@ -1,18 +1,17 @@
-# ■ Test Management App
+# Test Data Management System
 
 製造業の現場を想定した検査データ管理ソフトです。
 SQLiteを利用し、テスト結果を保存・検索・グラフ表示できるようにしました。
 
 ## ■ 使用技術
 - 言語: VB.NET (.NET 8)
-- DB: SQLite
-- グラフ: ScottPlot
+- データベース: SQLite
+- グラフ描画: ScottPlot
 
 ## ■ 主な機能
-- テスト結果の登録・検索
+- データの登録・更新・削除
 - DataGridView を使った一覧表示
 - 合格率の推移を折れ線グラフで可視化
-- 日付範囲を指定した集計表示
 
 ## ■ 画面サンプル
 ### 一覧画面
