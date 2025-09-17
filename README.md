@@ -13,7 +13,7 @@ SQLiteを利用し、検査結果を保存・検索・グラフ表示できる�
 - DataGridView を使った一覧表示
 - 合格率の推移を折れ線グラフで可視化
 
-<br><br><br><br>
+<br><br><br><br><br><br><br><br>
 ## ■ 画面サンプル
 ### データ登録画面
 <img width="505" height="482" alt="Image" src="https://github.com/user-attachments/assets/fa438485-e5c0-4082-b6d6-59773b165607" />
