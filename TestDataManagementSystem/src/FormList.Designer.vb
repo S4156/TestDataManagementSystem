@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormList
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FormList
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         dgvViewer = New DataGridView()
         btnSearch = New Button()
@@ -36,6 +36,7 @@ Partial Class FormList
         btnUpdate = New Button()
         FormsPlot1 = New ScottPlot.WinForms.FormsPlot()
         btnShowGraph = New Button()
+        btnCSVOutput = New Button()
         CType(dgvViewer, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -165,11 +166,21 @@ Partial Class FormList
         btnShowGraph.Text = "グラフに出力"
         btnShowGraph.UseVisualStyleBackColor = True
         ' 
+        ' btnCSVOutput
+        ' 
+        btnCSVOutput.Location = New Point(19, 526)
+        btnCSVOutput.Name = "btnCSVOutput"
+        btnCSVOutput.Size = New Size(115, 37)
+        btnCSVOutput.TabIndex = 19
+        btnCSVOutput.Text = "CSV出力"
+        btnCSVOutput.UseVisualStyleBackColor = True
+        ' 
         ' FormList
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(798, 651)
+        Controls.Add(btnCSVOutput)
         Controls.Add(btnShowGraph)
         Controls.Add(FormsPlot1)
         Controls.Add(btnUpdate)
@@ -205,4 +216,5 @@ Partial Class FormList
     Friend WithEvents btnUpdate As Button
     Friend WithEvents FormsPlot1 As ScottPlot.WinForms.FormsPlot
     Friend WithEvents btnShowGraph As Button
+    Friend WithEvents btnCSVOutput As Button
 End Class
