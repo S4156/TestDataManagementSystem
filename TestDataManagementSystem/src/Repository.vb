@@ -1,5 +1,6 @@
 ﻿Imports System.Configuration
 Imports System.Data.SQLite
+Imports System.IO
 Public Class Repository
     Private connectionString As String = ConfigurationManager.ConnectionStrings("MyDb").ConnectionString
     Private dt As New DataTable()
@@ -86,7 +87,7 @@ Public Class Repository
             End Using
         Catch ex As Exception
             MessageBox.Show("データ更新中にエラーが発生しました", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Return
+            Return
         End Try
         MessageBox.Show("データを更新しました。", "完了", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
@@ -168,4 +169,64 @@ Public Class Repository
         Return results
     End Function
 
+    Public Sub OutputToCSV()
+        If dt Is Nothing OrElse dt.Columns.Count = 0 Then
+            MessageBox.Show("出力するデータがありません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+        Try
+            Using sfd As New SaveFileDialog()
+                sfd.Filter = "CSVファイル (*.csv)|*.csv"
+                sfd.Title = "CSVファイルの保存"
+                sfd.FileName = "export.csv"
+                If sfd.ShowDialog() = DialogResult.OK Then
+                    Using sw As New StreamWriter(sfd.FileName, False, New System.Text.UTF8Encoding(True))
+                        ' ヘッダー出力
+                        Dim headers = dt.Columns.Cast(Of DataColumn)().
+                        Select(Function(c) EscapeCsv(c.ColumnName))
+                        sw.WriteLine(String.Join(",", headers))
+
+                        ' データ出力
+                        For Each row As DataRow In dt.Rows
+                            Dim fields = dt.Columns.Cast(Of DataColumn)().Select(Function(c)
+                                                                                     Dim value = row(c)
+                                                                                     If value Is Nothing OrElse value Is DBNull.Value Then
+                                                                                         Return ""
+                                                                                     End If
+                                                                                     If c.DataType Is GetType(DateTime) Then
+                                                                                         Return EscapeCsv(DirectCast(value, DateTime).ToString("yyyy-MM-dd"))
+                                                                                     End If
+                                                                                     Return EscapeCsv(value.ToString())
+                                                                                 End Function)
+                            sw.WriteLine(String.Join(",", fields))
+                        Next
+                    End Using
+                    MessageBox.Show("CSVファイルを出力しました。", "完了", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+
+            End Using
+        Catch ex As Exception
+            MessageBox.Show($"CSV出力に失敗しました。{vbCrLf}{ex.Message}",
+                "エラー",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' CSVエスケープ処理
+    Private Function EscapeCsv(field As String) As String
+        If field Is Nothing Then Return ""
+
+        Dim needsQuote =
+            field.Contains(",") OrElse
+            field.Contains("""") OrElse
+            field.Contains(vbCr) OrElse
+            field.Contains(vbLf)
+        field = field.Replace("""", """""")
+
+        If needsQuote Then
+            field = $"""{field}"""
+        End If
+        Return field
+    End Function
 End Class

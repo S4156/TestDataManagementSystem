@@ -72,5 +72,13 @@ Public Class FormList
 
         FormsPlot1.Refresh()
     End Sub
+
+    Private Sub btnCSVOutput_Click(sender As Object, e As EventArgs) Handles btnCSVOutput.Click
+        ListRepo.OutputToCSV()
+    End Sub
+
+    Private Sub dgvViewer_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvViewer.CellContentClick
+
+    End Sub
 End Class
 
